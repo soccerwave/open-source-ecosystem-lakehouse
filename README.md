@@ -1,10 +1,10 @@
 # Open Source Ecosystem Intelligence Lakehouse
 
-A production-style Data Engineering portfolio project built with **Databricks, PySpark, Apache Spark, Delta Lake, Unity Catalog, and Databricks Workflows** using public GitHub event data from **GH Archive**.
+A production style Data Engineering portfolio project built with **Databricks, PySpark, Apache Spark, Delta Lake, Unity Catalog, and Databricks Workflows** using public GitHub event data from **GH Archive**.
 
 The project focuses on realistic engineering concerns: incremental ingestion, idempotency, nested semi-structured JSON, schema variation, data quality, identity handling, bot classification, performance analysis, orchestration, and analytical Gold models.
 
----
+\---
 
 ## Project Overview
 
@@ -14,7 +14,7 @@ This project builds an end-to-end lakehouse pipeline that ingests those hourly f
 
 The project is primarily a **Data Engineering portfolio project**. The analytical layer provides purpose to the pipeline, but the main goal is to demonstrate engineering decisions and hands-on Spark/Databricks work.
 
----
+\---
 
 ## Analytical Question
 
@@ -22,7 +22,7 @@ The project is primarily a **Data Engineering portfolio project**. The analytica
 
 Because the final dataset covers only seven days, the project deliberately avoids making long-term historical claims.
 
----
+\---
 
 ## Architecture
 
@@ -54,30 +54,28 @@ Analytics / Visualizations
 
 The pipeline follows a Medallion-style architecture:
 
-- **Landing** — immutable hourly `.json.gz` files
-- **Bronze** — raw event preservation plus ingestion metadata
-- **Silver** — normalized common fields and event-specific payload models
-- **Gold** — repository-day analytical metrics
-- **Consumption** — ecosystem-level daily summary and visualizations
+* **Landing** — immutable hourly `.json.gz` files
+* **Bronze** — raw event preservation plus ingestion metadata
+* **Silver** — normalized common fields and event-specific payload models
+* **Gold** — repository-day analytical metrics
+* **Consumption** — ecosystem-level daily summary and visualizations
 
----
+\---
 
 ## Tech Stack
 
-- Databricks
-- PySpark
-- Apache Spark
-- Delta Lake
-- Unity Catalog
-- Databricks Workflows
-- Python
-- Spark SQL
-- Git / GitHub
-- GH Archive
+* Databricks
+* PySpark
+* Apache Spark
+* Delta Lake
+* Unity Catalog
+* Databricks Workflows
+* Python
+* Spark SQL
+* Git / GitHub
+* GH Archive
 
-The project intentionally avoids adding technologies such as Kafka, Airflow, ADF, or Kubernetes when they are not technically justified.
-
----
+\---
 
 ## Data Source
 
@@ -97,31 +95,31 @@ Example files:
 Landing location:
 
 ```text
-/Volumes/workspace/default/gharchive_raw
+/Volumes/workspace/default/gharchive\_raw
 ```
 
-The downloader is parameterized by `start_date` and `end_date` and skips files that already exist.
+The downloader is parameterized by `start\_date` and `end\_date` and skips files that already exist.
 
----
+\---
 
 ## Final Dataset Scale
 
 The final scale test uses **7 complete days** of GH Archive data: **September 1–7, 2026**.
 
-| Metric | Value |
-|---|---:|
-| Hourly source files | 168 |
-| Compressed raw data | ~5.964 GB |
-| Bronze events | 8,838,503 |
-| Silver Core events | 8,838,503 |
-| Gold repository-day rows | 1,785,239 |
-| Bronze duplicate event IDs | 0 |
-| Silver duplicate event IDs | 0 |
-| Gold duplicate `repo_id + event_date` keys | 0 |
+|Metric|Value|
+|-|-:|
+|Hourly source files|168|
+|Compressed raw data|\~5.964 GB|
+|Bronze events|8,838,503|
+|Silver Core events|8,838,503|
+|Gold repository-day rows|1,785,239|
+|Bronze duplicate event IDs|0|
+|Silver duplicate event IDs|0|
+|Gold duplicate `repo\_id + event\_date` keys|0|
 
 The project intentionally stops at seven days because the scale is sufficient to demonstrate the engineering design without increasing compute usage only for a larger headline number.
 
----
+\---
 
 ## Repository Structure
 
@@ -131,68 +129,68 @@ open-source-ecosystem-lakehouse/
 ├── .gitignore
 ├── .gitattributes
 ├── notebooks/
-│   ├── 00_environment_check.ipynb
-│   ├── 01_source_exploration.ipynb
-│   ├── 02_bronze_ingestion_clean.ipynb
-│   ├── 03_silver_core.ipynb
-│   ├── 04_silver_push_events.ipynb
-│   ├── 05_silver_pull_request_events.ipynb
-│   ├── 06_silver_issue_events.ipynb
-│   ├── 07_silver_issue_comment_events.ipynb
-│   ├── 08_silver_watch_events.ipynb
-│   ├── 09_silver_fork_events.ipynb
-│   ├── 10_silver_release_events.ipynb
-│   ├── 11_schema_variation_inventory.ipynb
-│   ├── 12_data_quality_checks.ipynb
-│   ├── 13_incremental_pipeline_validation.ipynb
-│   ├── 14_spark_performance_analysis.ipynb
-│   ├── 15_gold_repo_daily_activity.ipynb
-│   ├── 16_bot_identity_enrichment.ipynb
-│   ├── 17_download_gharchive_files.ipynb
-│   ├── 18_scale_test_metrics.ipynb
-│   ├── 19_contributor_lifecycle_metrics.ipynb
-│   └── 20_analytics_consumption.ipynb
+│   ├── 00\_environment\_check.ipynb
+│   ├── 01\_source\_exploration.ipynb
+│   ├── 02\_bronze\_ingestion\_clean.ipynb
+│   ├── 03\_silver\_core.ipynb
+│   ├── 04\_silver\_push\_events.ipynb
+│   ├── 05\_silver\_pull\_request\_events.ipynb
+│   ├── 06\_silver\_issue\_events.ipynb
+│   ├── 07\_silver\_issue\_comment\_events.ipynb
+│   ├── 08\_silver\_watch\_events.ipynb
+│   ├── 09\_silver\_fork\_events.ipynb
+│   ├── 10\_silver\_release\_events.ipynb
+│   ├── 11\_schema\_variation\_inventory.ipynb
+│   ├── 12\_data\_quality\_checks.ipynb
+│   ├── 13\_incremental\_pipeline\_validation.ipynb
+│   ├── 14\_spark\_performance\_analysis.ipynb
+│   ├── 15\_gold\_repo\_daily\_activity.ipynb
+│   ├── 16\_bot\_identity\_enrichment.ipynb
+│   ├── 17\_download\_gharchive\_files.ipynb
+│   ├── 18\_scale\_test\_metrics.ipynb
+│   ├── 19\_contributor\_lifecycle\_metrics.ipynb
+│   └── 20\_analytics\_consumption.ipynb
 └── docs/
     ├── architecture.md
-    ├── data_dictionary.md
+    ├── data\_dictionary.md
     └── runbook.md
 ```
 
----
+\---
 
 ## Bronze Layer
 
 Table:
 
 ```text
-workspace.oss_ecosystem.bronze_github_events
+workspace.oss\_ecosystem.bronze\_github\_events
 ```
 
-Bronze preserves the original source record in `raw_json` and extracts only the top-level fields required downstream.
+Bronze preserves the original source record in `raw\_json` and extracts only the top-level fields required downstream.
 
 Key design decisions:
 
-- preserve original raw event
-- track source file and source hour
-- store nested actor/repository/organization/payload structures as JSON strings
-- deduplicate events on `event_id`
-- use Delta Lake for persistence
-- support rerun-safe incremental ingestion
+* preserve original raw event
+* track source file and source hour
+* store nested actor/repository/organization/payload structures as JSON strings
+* deduplicate events on `event\_id`
+* use Delta Lake for persistence
+* support rerun-safe incremental ingestion
 
 A real duplicate source event was discovered during validation. The ingestion process was hardened with:
 
 ```python
-bronze_batch = bronze_batch.dropDuplicates(["event_id"])
+bronze\_batch = bronze\_batch.dropDuplicates(\["event\_id"])
 ```
 
----
+\---
 
 ## Ingestion Control
 
 Table:
 
 ```text
-workspace.oss_ecosystem.ingestion_file_log
+workspace.oss\_ecosystem.ingestion\_file\_log
 ```
 
 The control table tracks source files through statuses such as `discovered`, `processing`, `completed`, and `failed`.
@@ -207,31 +205,31 @@ Skipped existing files: 168
 Failed files: 0
 ```
 
----
+\---
 
 ## Silver Layer
 
 Core table:
 
 ```text
-workspace.oss_ecosystem.silver_events_core
+workspace.oss\_ecosystem.silver\_events\_core
 ```
 
 Silver Core normalizes fields shared by all event types: event ID, event type, event timestamp, actor ID and login, repository ID and name, organization ID, and source metadata.
 
 Event-specific Delta tables:
 
-- `silver_push_events`
-- `silver_pull_request_events`
-- `silver_issue_events`
-- `silver_issue_comment_events`
-- `silver_watch_events`
-- `silver_fork_events`
-- `silver_release_events`
+* `silver\_push\_events`
+* `silver\_pull\_request\_events`
+* `silver\_issue\_events`
+* `silver\_issue\_comment\_events`
+* `silver\_watch\_events`
+* `silver\_fork\_events`
+* `silver\_release\_events`
 
 This avoids creating one excessively wide and sparse schema for unrelated event payloads.
 
----
+\---
 
 ## Schema Variation Handling
 
@@ -239,94 +237,94 @@ The project does not simply enable automatic schema merging.
 
 Instead, schema behavior was inspected explicitly through:
 
-- top-level schema signature inspection
-- payload variation inventory
-- required-key validation
-- unexpected-field detection
-- schema baseline persistence
-- synthetic malformed-record validation
+* top-level schema signature inspection
+* payload variation inventory
+* required-key validation
+* unexpected-field detection
+* schema baseline persistence
+* synthetic malformed-record validation
 
 Observed examples included multiple row-level payload variants for Issues and Pull Request events.
 
----
+\---
 
 ## Data Quality
 
 Notebook:
 
 ```text
-12_data_quality_checks
+12\_data\_quality\_checks
 ```
 
 Results table:
 
 ```text
-workspace.oss_ecosystem.dq_run_results
+workspace.oss\_ecosystem.dq\_run\_results
 ```
 
 Checks include duplicate event IDs, required fields, malformed raw JSON, invalid timestamps, timestamp/source-hour consistency, missing source hours, repository ID availability, and Bronze/Silver reconciliation.
 
-A real ForkEvent with a null `repo_id` was preserved in Silver rather than deleted. Because repository attribution was impossible, that event is excluded from repository-level Gold metrics.
+A real ForkEvent with a null `repo\_id` was preserved in Silver rather than deleted. Because repository attribution was impossible, that event is excluded from repository-level Gold metrics.
 
----
+\---
 
 ## Gold Model
 
 Main Gold table:
 
 ```text
-workspace.oss_ecosystem.gold_repo_daily_activity
+workspace.oss\_ecosystem.gold\_repo\_daily\_activity
 ```
 
 Grain:
 
 ```text
-repo_id + event_date
+repo\_id + event\_date
 ```
 
 Metrics include:
 
-- total events
-- active contributors
-- Push events
-- Pull Request events
-- Issue events
-- Issue Comment events
-- Watch events
-- Fork events
-- Release events
-- pull requests opened / closed
-- issues opened / closed
-- observed stars
-- observed forks
-- contributor concentration
-- bot events
-- human-or-unknown events
-- bot contributors
-- human-or-unknown contributors
-- newly observed contributors
-- returning contributors
+* total events
+* active contributors
+* Push events
+* Pull Request events
+* Issue events
+* Issue Comment events
+* Watch events
+* Fork events
+* Release events
+* pull requests opened / closed
+* issues opened / closed
+* observed stars
+* observed forks
+* contributor concentration
+* bot events
+* human-or-unknown events
+* bot contributors
+* human-or-unknown contributors
+* newly observed contributors
+* returning contributors
 
 Repository name is descriptive metadata and is not part of the analytical grain.
 
----
+\---
 
 ## Contributor Concentration
 
-`top_contributor_share` is defined as the maximum number of events generated by one contributor in a repository-day divided by total contributor events for that repository-day.
+`top\_contributor\_share` is defined as the maximum number of events generated by one contributor in a repository-day divided by total contributor events for that repository-day.
 
 A value of `1.0` is common for low-activity repository-days where only one contributor generated all observed events.
 
 The metric is descriptive and is not interpreted as developer productivity.
 
----
+\---
 
 ## Bot and Identity Handling
 
 Dimension:
 
 ```text
-workspace.oss_ecosystem.dim_actor_identity
+workspace.oss\_ecosystem.dim\_actor\_identity
 ```
 
 Stable GitHub actor IDs are used as the identity key.
@@ -335,45 +333,45 @@ The model retains the latest observed login, first and last observed timestamps,
 
 Bot classification is deliberately conservative:
 
-> An actor is classified as a bot if at least one observed login ends with `[bot]`.
+> An actor is classified as a bot if at least one observed login ends with `\[bot]`.
 
-All other actors are classified as `human_or_unknown`.
+All other actors are classified as `human\_or\_unknown`.
 
----
+\---
 
 ## Contributor Lifecycle
 
-Lifecycle metrics are calculated for `human_or_unknown` actors only.
+Lifecycle metrics are calculated for `human\_or\_unknown` actors only.
 
-### `newly_observed_contributors`
+### `newly\_observed\_contributors`
 
 The contributor is first observed in that repository during the seven-day dataset. This does **not** mean the contributor is historically new to the repository.
 
-### `returning_contributors`
+### `returning\_contributors`
 
 The contributor was observed in the same repository on an earlier date within the dataset.
 
 These metrics are intentionally described as observation-window metrics.
 
----
+\---
 
 ## Ecosystem Daily Summary
 
 Consumption table:
 
 ```text
-workspace.oss_ecosystem.gold_ecosystem_daily_summary
+workspace.oss\_ecosystem.gold\_ecosystem\_daily\_summary
 ```
 
 Grain:
 
 ```text
-one row per event_date
+one row per event\_date
 ```
 
 Includes total events, active repositories, bot events, human-or-unknown events, newly observed contributors, returning contributors, bot event share, returning contributor share, stars, forks, pull requests opened, and issues opened.
 
----
+\---
 
 ## Analytics Output
 
@@ -385,30 +383,28 @@ Final visualizations:
 2. **Observed Contributor Lifecycle by Day**
 3. **Daily Bot Activity Share**
 
-No claim of long-term ecosystem growth or decline is made from only seven days of observations.
-
----
+\---
 
 ## Incremental and Idempotent Processing
 
 The project implements protection at three levels:
 
-- **File level:** the ingestion control table prevents completed hourly files from being processed unnecessarily.
-- **Event level:** Bronze and Silver use stable event IDs to prevent duplicate logical events.
-- **Downloader level:** existing hourly files are skipped automatically.
+* **File level:** the ingestion control table prevents completed hourly files from being processed unnecessarily.
+* **Event level:** Bronze and Silver use stable event IDs to prevent duplicate logical events.
+* **Downloader level:** existing hourly files are skipped automatically.
 
 This makes reruns safe without requiring complete pipeline resets.
 
----
+\---
 
 ## Orchestration
 
 The production pipeline is orchestrated with Databricks Workflows.
 
 ```text
-bronze_ingestion
+bronze\_ingestion
         ↓
-silver_core
+silver\_core
         ↓
 ┌─────────────────────────────────────┐
 │ Push                                │
@@ -420,36 +416,36 @@ silver_core
 │ Release                             │
 └─────────────────────────────────────┘
         ↓
-gold_repo_daily
+gold\_repo\_daily
         ↓
-bot_identity_enrichment
+bot\_identity\_enrichment
         ↓
-contributor_lifecycle_metrics
+contributor\_lifecycle\_metrics
         ↓
-data_quality_checks
+data\_quality\_checks
 ```
 
 The seven event-specific Silver tasks run in parallel.
 
 A validated end-to-end run after lifecycle integration completed successfully:
 
-| Field | Value |
-|---|---|
-| Run ID | `804699059046341` |
-| Launch | Manual |
-| Duration | 7m 36s |
-| Status | Succeeded |
-| Start | Sep 30, 2026, 12:02 PM |
+|Field|Value|
+|-|-|
+|Run ID|`804699059046341`|
+|Launch|Manual|
+|Duration|7m 36s|
+|Status|Succeeded|
+|Start|Sep 30, 2026, 12:02 PM|
 
 Final Gold validation after that run:
 
 ```text
-Missing required Gold columns: []
+Missing required Gold columns: \[]
 Gold rows: 1785239
 Duplicate repo/date keys: 0
 ```
 
----
+\---
 
 ## Spark Performance Analysis
 
@@ -468,15 +464,11 @@ Observed runtime: 3.175 seconds
 Earlier smaller workload:
 
 ```text
-Input rows: ~616,687
+Input rows: \~616,687
 Observed runtime: 0.559 seconds
 ```
 
-These numbers are **not** presented as a formal speedup comparison because serverless resources, caching, and execution conditions can vary.
-
-Observed skew did not justify adding salting, aggressive repartitioning, caching, or forced compaction.
-
----
+\---
 
 ## Storage Measurements
 
@@ -487,7 +479,7 @@ Final seven-day measurements:
 ```text
 168 files
 6,403,659,046 compressed bytes
-~5.964 GB
+\~5.964 GB
 ```
 
 ### Bronze Delta
@@ -511,32 +503,32 @@ Final seven-day measurements:
 42,489,498 bytes
 ```
 
----
+\---
 
 ## Production-Style Hardening
 
 The project includes:
 
-- parameterized source download
-- ingestion logging
-- control-table state tracking
-- Delta-backed targets
-- bootstrap-safe table creation
-- incremental execution
-- rerun safety
-- event-level deduplication
-- schema validation
-- data quality history
-- identity handling
-- bot enrichment
-- orchestration dependencies
-- documentation
-- data dictionary
-- pipeline runbook
+* parameterized source download
+* ingestion logging
+* control-table state tracking
+* Delta-backed targets
+* bootstrap-safe table creation
+* incremental execution
+* rerun safety
+* event-level deduplication
+* schema validation
+* data quality history
+* identity handling
+* bot enrichment
+* orchestration dependencies
+* documentation
+* data dictionary
+* pipeline runbook
 
 Core Bronze and Silver targets use `CREATE TABLE IF NOT EXISTS` to avoid requiring manually pre-created tables in a new environment.
 
----
+\---
 
 ## Engineering Decisions
 
@@ -556,55 +548,55 @@ Measured performance did not justify techniques such as salting, caching, or com
 
 The project was scaled until engineering behavior could be evaluated realistically, then stopped rather than spending more compute only to increase dataset size.
 
----
+\---
 
 ## Known Limitations
 
-- The dataset covers seven days, not long-term GitHub history.
-- `newly_observed_contributors` means first observation within the dataset, not historically new contributors.
-- `returning_contributors` is also relative to the observation window.
-- Bot detection based on `[bot]` suffix is intentionally conservative.
-- WatchEvent activity is treated as observed star activity, not historical total stars.
-- GH Archive represents public GitHub events and is not a complete model of repository behavior.
-- Repository-level Gold excludes events where repository attribution is unavailable.
-- Aggregated repository-contributor counts should not be interpreted as globally unique GitHub users.
+* The dataset covers seven days, not long-term GitHub history.
+* `newly\_observed\_contributors` means first observation within the dataset, not historically new contributors.
+* `returning\_contributors` is also relative to the observation window.
+* Bot detection based on `\[bot]` suffix is intentionally conservative.
+* WatchEvent activity is treated as observed star activity, not historical total stars.
+* GH Archive represents public GitHub events and is not a complete model of repository behavior.
+* Repository-level Gold excludes events where repository attribution is unavailable.
+* Aggregated repository-contributor counts should not be interpreted as globally unique GitHub users.
 
----
+\---
 
 ## Documentation
 
-- [`docs/architecture.md`](docs/architecture.md)
-- [`docs/data_dictionary.md`](docs/data_dictionary.md)
-- [`docs/runbook.md`](docs/runbook.md)
+* [`docs/architecture.md`](docs/architecture.md)
+* [`docs/data\_dictionary.md`](docs/data_dictionary.md)
+* [`docs/runbook.md`](docs/runbook.md)
 
----
+\---
 
 ## How to Run
 
-### 1. Download hourly files
+### 1\. Download hourly files
 
 Use:
 
 ```text
-17_download_gharchive_files
+17\_download\_gharchive\_files
 ```
 
 Set:
 
 ```text
-start_date
-end_date
+start\_date
+end\_date
 ```
 
-### 2. Run the Databricks Workflow
+### 2\. Run the Databricks Workflow
 
 Main workflow:
 
 ```text
-oss_ecosystem_lakehouse_pipeline
+oss\_ecosystem\_lakehouse\_pipeline
 ```
 
-### 3. Validate the final Gold model
+### 3\. Validate the final Gold model
 
 Expected seven-day result:
 
@@ -613,35 +605,40 @@ Gold rows: 1,785,239
 Duplicate repo/date keys: 0
 ```
 
-### 4. Run analytics consumption
+### 4\. Run analytics consumption
 
 Use:
 
 ```text
-20_analytics_consumption
+20\_analytics\_consumption
 ```
 
----
+\---
 
 ## Key Takeaways
 
 This project demonstrates:
 
-- practical Spark-based ingestion of large semi-structured JSON
-- incremental and idempotent processing
-- Bronze / Silver / Gold lakehouse modeling
-- Delta Lake usage
-- nested payload normalization
-- real duplicate handling
-- explicit schema-variation analysis
-- reusable data-quality controls
-- stable actor identity handling
-- conservative bot classification
-- contributor lifecycle metrics
-- Spark performance analysis
-- orchestration with task dependencies
-- measured scale testing
-- cost-conscious engineering decisions
-- production-style documentation
+* practical Spark-based ingestion of large semi-structured JSON
+* incremental and idempotent processing
+* Bronze / Silver / Gold lakehouse modeling
+* Delta Lake usage
+* nested payload normalization
+* real duplicate handling
+* explicit schema-variation analysis
+* reusable data-quality controls
+* stable actor identity handling
+* conservative bot classification
+* contributor lifecycle metrics
+* Spark performance analysis
+* orchestration with task dependencies
+* measured scale testing
+* cost-conscious engineering decisions
+* production-style documentation
 
-> **Correctness first, measurement second, optimization only when justified.**
+
+
+**#Author**
+
+Hamed Fallah
+
